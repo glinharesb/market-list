@@ -52,7 +52,7 @@ export const Modal = () => {
         uuid
       })
 
-      setTimeout(() => setIsLoading(false), 500)
+      setIsLoading(false)
 
       setShowModal(false)
       clearInputs()
