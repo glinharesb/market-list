@@ -24,3 +24,17 @@ export async function addProduct(product: IProducts) {
     console.error(error)
   }
 }
+
+export async function removeProduct(uuid: number) {
+  try {
+    await fetch('/api/products', {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ uuid })
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}

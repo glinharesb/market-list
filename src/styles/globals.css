@@ -6,6 +6,10 @@ body {
   @apply bg-zinc-900;
 }
 
+html.disable-scroll {
+  @apply overflow-hidden;
+}
+
 input {
   @apply focus-visible:outline-none focus-visible:ring;
 }

@@ -21,6 +21,8 @@ interface IAppContext {
   setProducts?: React.Dispatch<React.SetStateAction<IProducts[]>>
   showModal?: boolean
   setShowModal?: React.Dispatch<React.SetStateAction<boolean>>
+  isLoading?: boolean
+  setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const AppContext = createContext<IAppContext>({})
@@ -34,6 +36,12 @@ export const AppProvider = ({
   const [total, setTotal] = useState(0)
   const [products, setProducts] = useState<IProducts[]>([])
   const [showModal, setShowModal] = useState(false)
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    console.log(`isLoading`, isLoading)
+  }, [isLoading])
 
   useEffect(() => {
     // get and insert date
@@ -60,6 +68,15 @@ export const AppProvider = ({
     getProducts().then(setProducts)
   }, [products])
 
+  useEffect(() => {
+    // modal prevent scroll
+    if (showModal) {
+      document.querySelector('html')!.classList.add('disable-scroll')
+    } else {
+      document.querySelector('html')!.classList.remove('disable-scroll')
+    }
+  }, [showModal])
+
   return (
     <AppContext.Provider
       value={{
@@ -68,7 +85,9 @@ export const AppProvider = ({
         products,
         setProducts,
         showModal,
-        setShowModal
+        setShowModal,
+        isLoading,
+        setIsLoading
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import fs from 'fs/promises'
+import { IProducts } from '../../components/Context'
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,6 +16,14 @@ export default async function handler(
     }
   }
 
+  async function setProducts(products: IProducts[]) {
+    try {
+      await fs.writeFile('./products.json', JSON.stringify(products, null, 2))
+    } catch (error) {
+      res.status(200).json({ error })
+    }
+  }
+
   if (req.method === 'GET') {
     const data = await getProducts()
 
@@ -23,11 +32,27 @@ export default async function handler(
     try {
       const data = await getProducts()
 
-      await fs.writeFile('./products.json', JSON.stringify([...data, req.body]))
+      await setProducts([...data, req.body])
 
       res.status(200).json(req.body)
     } catch (error) {
       res.status(200).json({ error })
     }
+  } else if (req.method === 'DELETE') {
+    try {
+      const data: IProducts[] = await getProducts()
+
+      const filteredProducts = data.filter(
+        (products) => products.uuid !== req.body.uuid
+      )
+
+      await setProducts(filteredProducts)
+
+      res.status(200).json(req.body)
+    } catch (error) {
+      res.status(200).json({ error })
+    }
+  } else {
+    res.status(200).json({ error: 'invalid method' })
   }
 }
