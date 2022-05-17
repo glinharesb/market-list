@@ -5,3 +5,7 @@
 body {
   @apply bg-zinc-900;
 }
+
+input {
+  @apply focus-visible:outline-none focus-visible:ring;
+}
