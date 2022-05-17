@@ -7,23 +7,11 @@ import { formatter } from '../helpers/formatter'
 import { removeProduct } from '../helpers/products'
 
 const Home: NextPage = () => {
-  const {
-    date,
-    total,
-    products,
-    setShowModal,
-    showModal,
-    isLoading,
-    setIsLoading
-  } = useContext(AppContext)
+  const { date, total, products, setShowModal, showModal } =
+    useContext(AppContext)
 
   return (
     <div className="text-white font-poppins antialiased px-4 pt-5">
-      {isLoading && (
-        <div className="absolute bg-opacity-90 bg-black top-0 left-0 bottom-0 right-0 z-10 flex items-center justify-center">
-          <p>Carregando...</p>
-        </div>
-      )}
       <div className="flex flex-col m-auto max-w-3xl w-full pt-10 pb-20">
         <h1 className="text-3xl font-bold">Compra do dia</h1>
         <p className="text-2xl mt-2">{date}</p>
@@ -42,15 +30,7 @@ const Home: NextPage = () => {
               <div
                 key={product.uuid}
                 className="bg-zinc-800 p-5 rounded-md text-sm mt-5"
-                onClick={async () => {
-                  if (!setIsLoading) return
-
-                  setIsLoading(true)
-
-                  await removeProduct(product.uuid)
-
-                  setIsLoading(false)
-                }}
+                onClick={async () => await removeProduct(product.uuid)}
               >
                 <div className="flex justify-between font-bold">
                   <p>{product.name}</p>

@@ -10,8 +10,7 @@ import { CloseIcon } from './CloseIcon'
 import { AppContext } from './Context'
 
 export const Modal = () => {
-  const { products, setProducts, setShowModal, setIsLoading } =
-    useContext(AppContext)
+  const { products, setProducts, setShowModal } = useContext(AppContext)
 
   const nameRef = useRef<HTMLInputElement>(null)
   const quantityRef = useRef<HTMLInputElement>(null)
@@ -33,7 +32,7 @@ export const Modal = () => {
     async (e: SyntheticEvent) => {
       e.preventDefault()
 
-      if (!setShowModal || !setProducts || !products || !setIsLoading) return
+      if (!products || !setShowModal || !setProducts) return
 
       const name = nameRef.current!.value
       const quantity = quantityRef.current!.value
@@ -43,8 +42,6 @@ export const Modal = () => {
 
       const uuid = new Date().valueOf()
 
-      setIsLoading(true)
-
       await addProduct({
         name,
         quantity: Number(quantity),
@@ -52,12 +49,10 @@ export const Modal = () => {
         uuid
       })
 
-      setIsLoading(false)
-
       setShowModal(false)
       clearInputs()
     },
-    [setShowModal, setProducts, products, clearInputs, setIsLoading]
+    [setShowModal, setProducts, products, clearInputs]
   )
 
   return (

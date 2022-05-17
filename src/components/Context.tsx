@@ -21,8 +21,6 @@ interface IAppContext {
   setProducts?: React.Dispatch<React.SetStateAction<IProducts[]>>
   showModal?: boolean
   setShowModal?: React.Dispatch<React.SetStateAction<boolean>>
-  isLoading?: boolean
-  setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const AppContext = createContext<IAppContext>({})
@@ -36,12 +34,6 @@ export const AppProvider = ({
   const [total, setTotal] = useState(0)
   const [products, setProducts] = useState<IProducts[]>([])
   const [showModal, setShowModal] = useState(false)
-
-  const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    console.log(`isLoading`, isLoading)
-  }, [isLoading])
 
   useEffect(() => {
     // get and insert date
@@ -85,9 +77,7 @@ export const AppProvider = ({
         products,
         setProducts,
         showModal,
-        setShowModal,
-        isLoading,
-        setIsLoading
+        setShowModal
       }}
     >
       {children}
