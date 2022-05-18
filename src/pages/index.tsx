@@ -12,7 +12,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="text-white font-poppins antialiased px-4 pt-5">
-      <div className="flex flex-col m-auto max-w-3xl w-full pt-10 pb-20">
+      <div className="flex flex-col m-auto max-w-xl w-full pt-10 pb-20">
         <h1 className="text-3xl font-bold">Compra do dia</h1>
         <p className="text-2xl mt-2">{date}</p>
         {products && products?.length > 0 ? (
