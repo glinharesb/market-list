@@ -57,10 +57,11 @@ export const Modal = () => {
 
   return (
     <>
-      <div className="absolute bg-opacity-50 bg-black top-0 left-0 bottom-0 right-0" />
       <div
-        className={`absolute bottom-0 left-0 w-full p-5 pb-10 bg-zinc-800 rounded-t-xl`}
-      >
+        className="absolute bg-opacity-50 bg-black top-0 left-0 bottom-0 right-0"
+        onClick={() => setShowModal && setShowModal(false)}
+      />
+      <div className="absolute left-0 bottom-0 right-0 w-full md:max-w-md md:top-0 md:max-h-fit md:rounded-xl m-auto p-5 pb-10 bg-zinc-800 rounded-t-xl">
         <div className="flex justify-between">
           <p className="font-bold">Novo Item</p>
           <button

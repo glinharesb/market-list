@@ -13,3 +13,13 @@ html.disable-scroll {
 input {
   @apply focus-visible:outline-none focus-visible:ring;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
