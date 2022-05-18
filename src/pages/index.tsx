@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     useContext(AppContext)
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="absolute inset-0 flex flex-col justify-between">
       <main className="p-4">
         <div className="flex flex-col m-auto max-w-xl w-full pt-10 pb-20">
           <h1 className="text-3xl font-bold">Compra do dia</h1>
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               products.map((product) => (
                 <div
                   key={product.uuid}
-                  className="bg-zinc-800 p-5 rounded-md text-sm mt-5"
+                  className="bg-zinc-800 p-5 rounded-md text-sm mt-5 xl:cursor-pointer"
                   onClick={async () => await removeProduct(product.uuid)}
                 >
                   <div className="flex justify-between font-bold">
