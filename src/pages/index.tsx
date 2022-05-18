@@ -45,11 +45,24 @@ const Home: NextPage = () => {
         </div>
       </div>
       <button
-        className="fixed m-auto left-0 right-0 bottom-5 bg-green-500 w-14 h-14 rounded-full text-2xl"
+        className="fixed m-auto left-0 right-0 bottom-10 md:bottom-20 bg-green-500 w-14 h-14 rounded-full text-2xl"
         onClick={() => setShowModal && setShowModal(true)}
       >
         +
       </button>
+      <div className="absolute bottom-0 left-0 right-0 bg-zinc-800 border-t-2 border-zinc-700">
+        <p className="text-xs md:text-sm text-center py-1">
+          Copyright © {new Date().getFullYear()} | Made by{' '}
+          <a
+            href="https://github.com/glinharesb"
+            target="_blank"
+            rel="noreferrer"
+            className="font-bold"
+          >
+            Gabriel Linhares
+          </a>
+        </p>
+      </div>
       {showModal && <Modal />}
     </div>
   )
