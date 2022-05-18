@@ -63,7 +63,7 @@ export const Modal = () => {
       />
       <div className="absolute left-0 bottom-0 right-0 w-full md:max-w-md md:top-0 md:max-h-fit md:rounded-xl m-auto p-5 pb-10 bg-zinc-800 rounded-t-xl">
         <div className="flex justify-between">
-          <p className="font-bold">Novo Item</p>
+          <p className="font-bold">Novo produto</p>
           <button
             className="w-10 h-10 flex absolute right-3 top-3 justify-center items-center"
             onClick={() => setShowModal && setShowModal(false)}
